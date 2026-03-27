@@ -220,7 +220,11 @@ update_text_inside = f"""
     UPDATE {nome_schema_extracao}.gold_{nome_tabela}
     SET intervalo = CASE
                     WHEN tamanho_palavra <= 5 THEN 'entre 0 e 5'
-                    WHEN tamanho_palavra >= 6 THEN 'entre 6 e 15'
+                    WHEN tamanho_palavra >= 6 and tamanho_palavra <= 8 THEN 'entre 6 e 8'
+                    WHEN tamanho_palavra >= 6 and tamanho_palavra <= 8 THEN 'entre 6 e 8'
+                    WHEN tamanho_palavra >= 9 and tamanho_palavra <= 11 THEN 'entre 9 e 11'
+                    WHEN tamanho_palavra >= 12 and tamanho_palavra <= 13 THEN 'entre 12 e 13'
+                    WHEN tamanho_palavra >= 14 THEN 'maior que 14'
                 END;
 """
 cursor_commit_command(update_text_inside)
