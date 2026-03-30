@@ -9,7 +9,7 @@
   - 💨 CONHECIMENTO BÁSICO EM LOGS AIRFLOW
   - 🏦 CONHECIMENTO EM BANCO DE DADOS POSTGRES ( SQL )
 # PASSO A PASSO:
-  1 - Entrar no diretório da pasta pelo comando "cd/local-pasta" dentro do cmd ou digitando cmd dentro do endereço da pasta 
+  1 - Entrar no diretório da pasta pelo comando "cd/local-pasta" dentro do cmd ou digitando cmd dentro do endereço da pasta <br>
   2 - Docker ativo na máquina<br>
   3 - Rodar o seguinte comando : docker compose up<br> 
   4 - Verificar ip local e abrir localhost do AIRFLOW e POSTGRES com seu login e senha configurados<br>
