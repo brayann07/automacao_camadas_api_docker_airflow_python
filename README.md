@@ -8,8 +8,6 @@
   - 🔗 DOCKER CONFIGURADO PARA LOCALHOST
   - 💨 CONHECIMENTO BÁSICO EM LOGS AIRFLOW
   - 🏦 CONHECIMENTO EM BANCO DE DADOS POSTGRES ( SQL )
-  - 👁  VISUALIZADOR DE BANCO DE DADOS( BEEKEEPER ) 
-
 # PASSO A PASSO:
   1 - Abrir o CMD(Docker Desktop) ou WSL(Docker) dentro da pasta com os arquivos<br>
   2 - Docker ativo na máquina<br>
