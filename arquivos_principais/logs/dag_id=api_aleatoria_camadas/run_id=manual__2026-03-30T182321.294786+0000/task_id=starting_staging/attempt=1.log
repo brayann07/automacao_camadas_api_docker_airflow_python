@@ -1,0 +1,11 @@
+{"timestamp":"2026-03-30T18:23:30.044873Z","level":"info","event":"DAG bundles loaded: dags-folder","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager","filename":"manager.py","lineno":179}
+{"timestamp":"2026-03-30T18:23:30.068268Z","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/extracao_api_python/api.py","logger":"airflow.models.dagbag.BundleDagBag","filename":"dagbag.py","lineno":593}
+{"timestamp":"2026-03-30T18:23:30.789677Z","level":"warning","event":"urllib3 (2.6.3) or chardet (6.0.0.post1)/charset_normalizer (3.4.5) doesn't match a supported version!","category":"RequestsDependencyWarning","filename":"/home/airflow/.local/lib/python3.12/site-packages/requests/__init__.py","lineno":113,"logger":"py.warnings"}
+{"timestamp":"2026-03-30T18:23:30.796707Z","level":"info","event":"Stats instance was created in PID 18 but accessed in PID 104. Re-initializing.","logger":"airflow.stats","filename":"stats.py","lineno":57}
+{"timestamp":"2026-03-30T18:23:31.634136Z","level":"info","event":"Conseguiu receber algum dado","logger":"task.stdout"}
+{"timestamp":"2026-03-30T18:23:31.675444Z","level":"info","event":"--------","logger":"task.stdout"}
+{"timestamp":"2026-03-30T18:23:31.676445Z","level":"info","event":"['word', 'length', 'category', 'language']","logger":"task.stdout"}
+{"timestamp":"2026-03-30T18:23:31.677428Z","level":"info","event":"GUARDOU VALORES TEMPORARIAMENTE","logger":"task.stdout"}
+{"timestamp":"2026-03-30T18:23:31.765923Z","level":"info","event":"CRIOU COLUNAS NA STAGING","logger":"task.stdout"}
+{"timestamp":"2026-03-30T18:23:39.842365Z","level":"info","event":"ADICIONOU ESSES VALORES A COLUNAS","logger":"task.stdout"}
+{"timestamp":"2026-03-30T18:23:39.845525Z","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.operators.python.PythonOperator","filename":"python.py","lineno":230}

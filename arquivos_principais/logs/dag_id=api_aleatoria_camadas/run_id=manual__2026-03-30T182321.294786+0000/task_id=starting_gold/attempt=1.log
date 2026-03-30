@@ -1,0 +1,7 @@
+{"timestamp":"2026-03-30T18:23:41.270634Z","level":"info","event":"DAG bundles loaded: dags-folder","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager","filename":"manager.py","lineno":179}
+{"timestamp":"2026-03-30T18:23:41.273658Z","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/extracao_api_python/api.py","logger":"airflow.models.dagbag.BundleDagBag","filename":"dagbag.py","lineno":593}
+{"timestamp":"2026-03-30T18:23:41.519100Z","level":"warning","event":"urllib3 (2.6.3) or chardet (6.0.0.post1)/charset_normalizer (3.4.5) doesn't match a supported version!","category":"RequestsDependencyWarning","filename":"/home/airflow/.local/lib/python3.12/site-packages/requests/__init__.py","lineno":113,"logger":"py.warnings"}
+{"timestamp":"2026-03-30T18:23:41.523769Z","level":"info","event":"Stats instance was created in PID 18 but accessed in PID 108. Re-initializing.","logger":"airflow.stats","filename":"stats.py","lineno":57}
+{"timestamp":"2026-03-30T18:23:41.655274Z","level":"info","event":"ADICIONOU VALORES A CAMADA GOLD","logger":"task.stdout"}
+{"timestamp":"2026-03-30T18:23:41.682126Z","level":"info","event":"ADICIONOU VALOR DE INTERVALO","logger":"task.stdout"}
+{"timestamp":"2026-03-30T18:23:41.682284Z","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.operators.python.PythonOperator","filename":"python.py","lineno":230}

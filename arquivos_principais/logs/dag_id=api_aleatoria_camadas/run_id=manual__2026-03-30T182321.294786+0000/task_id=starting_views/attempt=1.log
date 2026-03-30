@@ -1,0 +1,8 @@
+{"timestamp":"2026-03-30T18:23:43.032180Z","level":"info","event":"DAG bundles loaded: dags-folder","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager","filename":"manager.py","lineno":179}
+{"timestamp":"2026-03-30T18:23:43.035865Z","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/extracao_api_python/api.py","logger":"airflow.models.dagbag.BundleDagBag","filename":"dagbag.py","lineno":593}
+{"timestamp":"2026-03-30T18:23:43.328374Z","level":"warning","event":"urllib3 (2.6.3) or chardet (6.0.0.post1)/charset_normalizer (3.4.5) doesn't match a supported version!","category":"RequestsDependencyWarning","filename":"/home/airflow/.local/lib/python3.12/site-packages/requests/__init__.py","lineno":113,"logger":"py.warnings"}
+{"timestamp":"2026-03-30T18:23:43.336024Z","level":"info","event":"Stats instance was created in PID 18 but accessed in PID 109. Re-initializing.","logger":"airflow.stats","filename":"stats.py","lineno":57}
+{"timestamp":"2026-03-30T18:23:43.464176Z","level":"info","event":"RODOU O COMANDO SQL EM: /opt/airflow/dags/extracao_api_python/sql_queries/vw_duplicadas.sql","logger":"task.stdout"}
+{"timestamp":"2026-03-30T18:23:43.479751Z","level":"info","event":"RODOU O COMANDO SQL EM: /opt/airflow/dags/extracao_api_python/sql_queries/vw_intervalo.sql","logger":"task.stdout"}
+{"timestamp":"2026-03-30T18:23:43.480653Z","level":"info","event":"RODOU OS SQLS","logger":"task.stdout"}
+{"timestamp":"2026-03-30T18:23:43.479872Z","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.operators.python.PythonOperator","filename":"python.py","lineno":230}
