@@ -17,9 +17,9 @@
   4 - Verificar ip local e abrir o AIRFLOW e POSTGRES com seu login e senha configurados<br>
   5 - Rodar o arquivo python no airflow "api_aleatoria_camadas"<br>
   6 - Se tudo der certo, o banco de dados POSTGRES estará preenchido com os seguintes campos:<br>
-    <span style= "font-size : 30"> 📂 - extracao_palavras_aleatorias</p> <span>
-      🥉 - staging_palavras_aleatórias<br>
-      🥈 - silver_palavras_aleatórias<br>
-      🥇 - gold_palavras_aleatórias<br>
-      👁  - vw_aleatorias_duplicadas<br>
-      👁  - vw_aleatorias_ocorrencias
+     SCHEMA - 📂 -> extracao_palavras_aleatorias<br>
+      TABLE - 🥉 -> staging_palavras_aleatórias<br>
+      TABLE - 🥈 -> silver_palavras_aleatórias<br>
+      TABLE - 🥇 -> gold_palavras_aleatórias<br>
+      VIEW - 👁 -> vw_aleatorias_duplicadas<br>
+      VIEW - 👁 -> vw_aleatorias_ocorrencias
