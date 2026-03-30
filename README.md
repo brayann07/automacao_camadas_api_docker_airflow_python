@@ -16,7 +16,7 @@
   3 - Rodar o seguinte comando : docker compose up<br> 
   4 - Verificar ip local e abrir o AIRFLOW e POSTGRES com seu login e senha configurados<br>
   5 - Rodar o arquivo python no airflow "api_aleatoria_camadas"<br>
-  6 - Se tudo der certo, o banco de dados POSTGRES estará preenchido com os seguintes campos:<br>
+  6 - Se tudo der certo, o banco de dados POSTGRES estará preenchido com os seguintes campos:<br><br>
      SCHEMA - 📂 -> extracao_palavras_aleatorias<br>
       TABLE - 🥉 -> staging_palavras_aleatórias<br>
       TABLE - 🥈 -> silver_palavras_aleatórias<br>
