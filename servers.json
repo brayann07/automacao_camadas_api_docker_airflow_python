@@ -1,0 +1,14 @@
+{
+  "Servers": {
+    "1": {
+      "Name": "DataWarehouse (SETUP)",
+      "Group": "Servers",
+      "Host": "postgres",
+      "Port": 5432,
+      "MaintenanceDB": "SETUP",
+      "Username": "postgres",
+      "SSLMode": "prefer",
+      "Comment": "Servidor principal do ambiente de testes — container interno datastack-net"
+    }
+  }
+}

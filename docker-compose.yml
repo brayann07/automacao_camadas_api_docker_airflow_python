@@ -1,0 +1,144 @@
+version: "3.9"
+
+# =============================================================================
+#  AMBIENTE DE TESTES UNIFICADO — Postgres + pgAdmin + Airflow
+#  Rede interna: datastack-net
+#  Todos os serviços se comunicam pelo nome do container (DNS interno Docker)
+# =============================================================================
+
+services:
+
+  # ---------------------------------------------------------------------------
+  #  POSTGRES — Banco de dados principal (datawarehouse)
+  # ---------------------------------------------------------------------------
+  postgres:
+    image: postgres:17
+    container_name: setup_datawarehouse
+    environment:
+      POSTGRES_DB: SETUP
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: "4102"
+    ports:
+      - "5433:5432"          # Acesso externo via localhost:5433
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./initdb:/docker-entrypoint-initdb.d   # Scripts SQL executados na 1ª inicialização
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d SETUP"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    restart: unless-stopped
+    networks:
+      - datastack-net
+
+  # ---------------------------------------------------------------------------
+  #  PGADMIN — Interface web para administrar o Postgres
+  # ---------------------------------------------------------------------------
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin_setup
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@setup.com
+      PGADMIN_DEFAULT_PASSWORD: "4102"
+    ports:
+      - "8080:80"             # Acesso: http://localhost:8080
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+      - ./pgadmin/servers.json:/pgadmin4/servers.json:ro  # Servidor pré-configurado
+    restart: unless-stopped
+    networks:
+      - datastack-net
+
+  # ---------------------------------------------------------------------------
+  #  AIRFLOW — Orquestrador de pipelines (LocalExecutor + standalone)
+  # ---------------------------------------------------------------------------
+  airflow:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: airflow
+    env_file:
+      - .env                  # Variáveis extras (credenciais de APIs, etc.)
+    environment:
+      # --- Core ---
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__CORE__LOAD_EXAMPLES: "False"
+      AIRFLOW__CORE__DAG_DISCOVERY_SAFE_MODE: "False"
+      AIRFLOW__CORE__DAG_IGNORE_FILE_SYNTAX: "glob"
+      AIRFLOW__CORE__PARALLELISM: "32"
+      AIRFLOW__CORE__MAX_ACTIVE_TASKS_PER_DAG: "16"
+      AIRFLOW__CORE__MAX_ACTIVE_RUNS_PER_DAG: "4"
+
+      # --- Banco de dados do Airflow (schema dedicado dentro do SETUP) ---
+      # Usa o nome do serviço "postgres" como host (DNS interno Docker)
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: "postgresql+psycopg2://postgres:4102@postgres:5432/SETUP?options=-csearch_path%3Dairflow"
+
+      # --- API ---
+      AIRFLOW__API__BASE_URL: "http://localhost:8090"
+      AIRFLOW__API__HOST: "0.0.0.0"
+      AIRFLOW__API__SECRET_KEY: "very-long-and-secure-secret-key-that-is-at-least-64-characters-long-!!!!"
+      AIRFLOW__API_AUTH__JWT_SECRET: "very-long-and-secure-secret-key-that-is-at-least-64-characters-long-!!!!"
+
+      # --- Workers (Airflow 3.x: workers se comunicam com a Execution API na porta interna 8080) ---
+      AIRFLOW__CORE__EXECUTION_API_SERVER_URL: "http://localhost:8080/execution/"
+
+      # --- Scheduler ---
+      AIRFLOW__SCHEDULER__PARSING_PROCESSES: "6"
+      AIRFLOW__SCHEDULER__MIN_FILE_PROCESS_INTERVAL: "5"
+      AIRFLOW__DAG_PROCESSOR__REFRESH_INTERVAL: "5"
+      AIRFLOW__SCHEDULER__SCHEDULER_HEARTBEAT_SEC: "2"
+
+      # --- Auth ---
+      AIRFLOW__SIMPLE_AUTH_MANAGER__PASSWORDS_FILE: "/opt/airflow/passwords.txt"
+
+      # --- Python path ---
+      PYTHONPATH: "/opt/airflow/dags:/opt/airflow/plugins"
+
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+      - ./plugins:/opt/airflow/plugins
+      - ./Tools:/opt/airflow/dags/Tools
+      - ./backups:/opt/airflow/backups
+      - ./data:/opt/airflow/data
+      - /var/run/docker.sock:/var/run/docker.sock   # Permite que DAGs disparem containers
+    ports:
+      - "8090:8080"           # UI Airflow: http://localhost:8090
+    depends_on:
+      postgres:
+        condition: service_healthy
+    extra_hosts:
+      - "host.docker.internal:host-gateway"   # Acesso ao host a partir do container
+    command: >
+      bash -c "
+        airflow db migrate &&
+        echo 'admin:admin' > /opt/airflow/passwords.txt &&
+        exec airflow standalone
+      "
+    restart: always
+    networks:
+      - datastack-net
+
+# =============================================================================
+#  VOLUMES PERSISTENTES
+# =============================================================================
+volumes:
+  pgdata:
+    name: datastack_pgdata
+  pgadmin_data:
+    name: datastack_pgadmin
+
+# =============================================================================
+#  REDE INTERNA
+#  Todos os serviços se enxergam pelo nome do container.
+#  Ex.: Airflow acessa o Postgres em "postgres:5432" (sem precisar de host-gateway)
+# =============================================================================
+networks:
+  datastack-net:
+    name: datastack-net
+    driver: bridge
