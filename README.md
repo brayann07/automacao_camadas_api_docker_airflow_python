@@ -11,13 +11,13 @@
   - 👁  VISUALIZADOR DE BANCO DE DADOS( BEEKEEPER ) 
 
 # PASSO A PASSO:
-  1 - Abrir o CMD dentro da pasta com os arquivos
-  2 - Docker ativo na máquina
-  3 - Rodar o seguinte comando : docker compose up 
-  4 - Verificar ip local e abrir o AIRFLOW e POSTGRES com seu login e senha configurados
-  5 - Rodar o arquivo python no airflow "api_aleatoria_camadas"
+  1 - Abrir o CMD dentro da pasta com os arquivos<br>
+  2 - Docker ativo na máquina<br>
+  3 - Rodar o seguinte comando : docker compose up<br> 
+  4 - Verificar ip local e abrir o AIRFLOW e POSTGRES com seu login e senha configurados<br>
+  5 - Rodar o arquivo python no airflow "api_aleatoria_camadas"<br>
   6 - Se tudo der certo, o banco de dados POSTGRES estará preenchido com os seguintes campos:<br>
-    <p align = 'center'> 📂 - extracao_palavras_aleatorias</p> <br>
+    <span style= "font-size : 30"> 📂 - extracao_palavras_aleatorias</p> <span>
       🥉 - staging_palavras_aleatórias<br>
       🥈 - silver_palavras_aleatórias<br>
       🥇 - gold_palavras_aleatórias<br>
