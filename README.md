@@ -18,8 +18,8 @@
   5 - Rodar o arquivo python no airflow "api_aleatoria_camadas"<br>
   6 - Se tudo der certo, o banco de dados POSTGRES estará preenchido com os seguintes campos:<br><br>
      SCHEMA - 📂 -> extracao_palavras_aleatorias<br>
-      TABLE - 🥉 -> staging_palavras_aleatórias<br>
-      TABLE - 🥈 -> silver_palavras_aleatórias<br>
-      TABLE - 🥇 -> gold_palavras_aleatórias<br>
+      TABLE - 🥉 -> staging_palavras_aleatorias<br>
+      TABLE - 🥈 -> silver_palavras_aleatorias<br>
+      TABLE - 🥇 -> gold_palavras_aleatorias<br>
       VIEW - 👁 -> vw_aleatorias_duplicadas<br>
       VIEW - 👁 -> vw_aleatorias_ocorrencias
