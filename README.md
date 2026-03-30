@@ -11,7 +11,7 @@
   - 👁  VISUALIZADOR DE BANCO DE DADOS( BEEKEEPER ) 
 
 # PASSO A PASSO:
-  1 - Abrir o CMD dentro da pasta com os arquivos<br>
+  1 - Abrir o CMD(Docker Desktop) ou WSL(Docker) dentro da pasta com os arquivos<br>
   2 - Docker ativo na máquina<br>
   3 - Rodar o seguinte comando : docker compose up<br> 
   4 - Verificar ip local e abrir localhost do AIRFLOW e POSTGRES com seu login e senha configurados<br>
